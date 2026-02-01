@@ -1,37 +1,22 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { Menu, X } from 'lucide-react'
 
 const navItems = [
-  { name: 'Home', href: '#home' },
+  { name: 'Projects', href: '#projects' },
   { name: 'About', href: '#about' },
   { name: 'Experience', href: '#experience' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Education', href: '#education' },
+  { name: 'Contact', href: '#contact' },
 ]
 
 export default function Navigation() {
-  const [activeSection, setActiveSection] = useState('home')
   const [scrolled, setScrolled] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
-      
-      const sections = navItems.map(item => item.href.substring(1))
-      const current = sections.find(section => {
-        const element = document.getElementById(section)
-        if (element) {
-          const rect = element.getBoundingClientRect()
-          return rect.top <= 100 && rect.bottom >= 100
-        }
-        return false
-      })
-      
-      if (current) {
-        setActiveSection(current)
-      }
+      setScrolled(window.scrollY > 20)
     }
 
     window.addEventListener('scroll', handleScroll)
@@ -43,55 +28,65 @@ export default function Navigation() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
+    setMobileMenuOpen(false)
   }
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-dark-bg/80 backdrop-blur-md border-b-2 border-black' : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-lg md:text-xl font-bold text-black"
-          >
-            ARSES PRASAI
-          </motion.div>
-          
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => {
-              const sectionId = item.href.substring(1)
-              const isActive = activeSection === sectionId
-              
-              return (
+    <>
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? 'bg-warm-white/90 backdrop-blur-lg border-b border-neutral-200/50'
+            : 'bg-transparent'
+        }`}
+      >
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="flex items-center justify-end h-20 md:h-24">
+            {/* Desktop Nav */}
+            <div className="hidden md:flex items-center gap-10">
+              {navItems.map((item) => (
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className={`relative px-3 py-2 text-sm font-medium transition-colors duration-300 ${
-                    isActive ? 'text-black' : 'text-black hover:text-black'
-                  }`}
+                  className="text-text-secondary hover:text-text-primary transition-colors
+                           duration-200 text-lg font-medium"
                 >
                   {item.name}
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeIndicator"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-black"
-                      initial={false}
-                      transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                    />
-                  )}
                 </button>
-              )
-            })}
+              ))}
+            </div>
+
+            {/* Mobile menu button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 -mr-2 text-text-secondary hover:text-text-primary transition-colors"
+            >
+              {mobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+            </button>
           </div>
         </div>
-      </div>
-    </motion.nav>
+      </nav>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div
+          className="fixed top-20 left-0 right-0 z-40 bg-warm-white/95 backdrop-blur-lg
+                   border-b border-neutral-200 md:hidden"
+        >
+          <div className="max-w-6xl mx-auto px-6 py-4 space-y-2">
+            {navItems.map((item) => (
+              <button
+                key={item.name}
+                onClick={() => scrollToSection(item.href)}
+                className="block w-full text-left py-3 text-text-secondary hover:text-accent
+                         transition-colors text-lg font-medium"
+              >
+                {item.name}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </>
   )
 }
-

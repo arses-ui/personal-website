@@ -1,25 +1,21 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import Navigation from '@/components/Navigation'
 import Hero from '@/components/Hero'
 import About from '@/components/About'
-import WorkExperience from '@/components/WorkExperience'
 import Projects from '@/components/Projects'
-import Education from '@/components/Education'
-import Navigation from '@/components/Navigation'
-import ParticleBackground from '@/components/ParticleBackground'
+import Experience from '@/components/Experience'
+import Footer from '@/components/Footer'
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen overflow-hidden">
-      <ParticleBackground />
+    <main className="min-h-screen bg-warm-white">
       <Navigation />
       <Hero />
       <About />
-      <WorkExperience />
       <Projects />
-      <Education />
+      <Experience />
+      <Footer />
     </main>
   )
 }
-

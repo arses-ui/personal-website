@@ -1,50 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-neutral-200;
   }
+
   body {
-    @apply bg-dark-bg text-black antialiased;
+    @apply bg-warm-white text-text-primary antialiased font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
   }
 }
 
-@layer utilities {
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-neutral-800 to-neutral-600;
+@layer components {
+  .bento-card {
+    @apply bg-card-white border border-neutral-200 rounded-2xl p-5 md:p-6
+           shadow-soft transition-all duration-300 hover:shadow-soft-lg;
   }
-  
-  .glow-effect {
-    @apply shadow-[0_0_20px_rgba(0,0,0,0.15)];
+
+  .bento-card-sm {
+    @apply bg-card-white border border-neutral-200 rounded-xl p-4
+           shadow-soft transition-all duration-300 hover:shadow-soft-lg;
   }
-  
-  .hover-glow {
-    @apply transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,0,0,0.25)];
+
+  .status-badge {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 bg-accent/5
+           text-accent text-xs font-medium rounded-full border border-accent/20;
+  }
+
+  .nav-link {
+    @apply text-text-secondary hover:text-text-primary transition-colors
+           duration-200 text-sm font-medium;
+  }
+
+  .section-heading {
+    @apply text-3xl md:text-4xl font-serif font-semibold
+           text-text-primary tracking-tight;
+  }
+
+  .body-text {
+    @apply text-text-secondary leading-relaxed;
+  }
+
+  .section {
+    @apply py-6 md:py-8;
   }
 }
 
-/* Smooth scroll behavior */
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
+::selection {
+  background-color: rgba(58, 64, 49, 0.15);
+}
+
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0A0A0A;
+  background: #FAF9F6;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #00FFFF;
-  border-radius: 5px;
+  background: #d1d5db;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #00CED1;
+  background: #9ca3af;
 }
-

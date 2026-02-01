@@ -1,16 +1,16 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({ 
-  subsets: ['latin'],
-  display: 'swap',
-  preload: true,
-})
-
 export const metadata: Metadata = {
-  title: 'Arses Prasai - Portfolio',
-  description: 'Personal portfolio website of Arses Prasai',
+  title: 'Arses Prasai - ML Researcher & Engineer',
+  description: 'Thoughtful research & machine learning craftsmanship. Building intelligent systems with care and precision.',
+  keywords: ['Machine Learning', 'AI Research', 'Computer Vision', 'Deep Learning', 'Dartmouth'],
+  authors: [{ name: 'Arses Prasai' }],
+  openGraph: {
+    title: 'Arses Prasai - ML Researcher & Engineer',
+    description: 'Thoughtful research & machine learning craftsmanship.',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({
@@ -20,8 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={inter.className}>{children}</body>
+      <body>{children}</body>
     </html>
   )
 }
-

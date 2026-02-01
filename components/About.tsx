@@ -1,83 +1,87 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
+import { Code2, Brain, Database, Cpu } from 'lucide-react'
+
+const toolkit = [
+  { name: 'Python', icon: Code2 },
+  { name: 'PyTorch', icon: Brain },
+  { name: 'TensorFlow', icon: Brain },
+  { name: 'OpenCV', icon: Cpu },
+  { name: 'LangGraph', icon: Database },
+  { name: 'Scikit-learn', icon: Brain },
+  { name: 'NumPy', icon: Code2 },
+  { name: 'FastAPI', icon: Database },
+]
+
+const interests = [
+  'Diffusion Models',
+  'Model Interpretability',
+  'Computer Vision',
+  'Optimization Theory',
+  'Neural Architecture',
+  'Bayesian Methods',
+]
 
 export default function About() {
   return (
-    <section
-      id="about"
-      className="relative py-16 px-6 sm:px-8 lg:px-12 scroll-mt-24"
-    >
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-10"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-black">
-            <span className="">About Me</span>
-          </h2>
-          <div className="w-24 h-1 bg-black mx-auto"></div>
-        </motion.div>
+    <section id="about" className="-mt-16 pb-2 px-6 lg:px-8 scroll-mt-28">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="section-heading mb-4">About</h2>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
-          >
-            <p className="text-base text-black leading-relaxed">
-            I'm a Computer Science and Mathematics student with a strong interest in understanding the fundamental
-  principles behind modern AI and machine learning systems. My focus lies in exploring the mathematical
-  and architectural foundations that drive contemporary ML and deep learning models.
-            </p>
-            <p className="text-base text-black leading-relaxed">
-              My interests include studying model architectures, optimization methods, and learning
-              dynamics, and in leveraging this theoretical understanding to improve existing systems through
-              research-driven and practical applications. 
-            </p>
-
-            <p className="text-base text-black leading-relaxed">
-              I am currently working on a project at the intersection of photonics and Machine learning. Stay tuned for more updates :)
-
-            </p>
-            <motion.a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-block mt-6 px-8 py-3 bg-transparent border-2 border-black text-black 
-                         rounded-lg font-semibold hover:bg-black hover:text-white transition-all duration-300 
-                         hover-glow"
-            >
-              View Resume (PDF)
-            </motion.a>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex justify-center"
-          >
-            <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-black 
-                          hover:border-black transition-all duration-300 hover-glow">
-              <Image
-                src="/me.jpg"
-                alt="Profile photo"
-                fill
-                className="object-cover"
-                priority
-              />
+        {/* Bento Grid - Compact */}
+        <div className="grid md:grid-cols-3 gap-3">
+          {/* Bio Card - Spans 2 cols */}
+          <div className="md:col-span-2 bento-card">
+            <div className="space-y-3 text-sm text-text-secondary leading-relaxed">
+              <p>
+                I'm deeply interested in understanding the fundamental principles behind modern AI
+                and machine learning systems. My focus lies in exploring the mathematical and
+                architectural foundations that drive contemporary ML and deep learning models.
+              </p>
+              <p>
+                From optimization dynamics to model interpretability, I enjoy diving into the
+                "why" behind algorithms. Currently working on projects at the intersection of
+                photonics and machine learning, investigating how physical systems can enhance computation.
+              </p>
             </div>
-          </motion.div>
+          </div>
+
+          {/* Research Interests */}
+          <div className="bento-card">
+            <h3 className="text-sm font-semibold text-text-primary mb-3">Research Interests</h3>
+            <div className="flex flex-wrap gap-1.5">
+              {interests.map((interest) => (
+                <span
+                  key={interest}
+                  className="px-2.5 py-1 bg-accent/5 text-accent text-xs rounded-lg"
+                >
+                  {interest}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Toolkit Card - Full width */}
+          <div className="md:col-span-3 bento-card">
+            <h3 className="text-sm font-semibold text-text-primary mb-3">Toolkit</h3>
+            <div className="grid grid-cols-4 md:grid-cols-8 gap-2">
+              {toolkit.map((tool) => {
+                const Icon = tool.icon
+                return (
+                  <div
+                    key={tool.name}
+                    className="flex flex-col items-center gap-1.5 p-2.5 rounded-xl
+                             bg-warm-white hover:bg-accent/5 transition-colors group"
+                  >
+                    <Icon className="w-4 h-4 text-text-muted group-hover:text-accent transition-colors" />
+                    <span className="text-[10px] text-text-secondary group-hover:text-accent transition-colors">
+                      {tool.name}
+                    </span>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </section>
