@@ -19,7 +19,8 @@ const socialLinks = [
 
 export default function Footer() {
   const [copied, setCopied] = useState(false)
-  const email = 'arses.prasai@dartmouth.edu'
+  const email = 'arses.prasai.28@dartmouth.edu'
+  const displayEmail = 'arses [dot] prasai [dot] 28 [at] dartmouth [dot] edu'
 
   const copyEmail = async () => {
     await navigator.clipboard.writeText(email)
@@ -46,18 +47,8 @@ export default function Footer() {
             <div className="flex flex-wrap items-center gap-3">
               {/* Email */}
               <div className="flex items-center gap-2 text-sm">
-                <Mail className="w-4 h-4 text-accent" />
-                <span className="text-text-primary">{email}</span>
-                <button
-                  onClick={copyEmail}
-                  className="p-1 hover:bg-accent/10 rounded transition-colors"
-                >
-                  {copied ? (
-                    <Check className="w-3.5 h-3.5 text-green-600" />
-                  ) : (
-                    <Copy className="w-3.5 h-3.5 text-text-muted hover:text-accent" />
-                  )}
-                </button>
+                <Mail className="w-4 h-4 text-text-secondary" />
+                <span className="text-text-primary">{displayEmail}</span>
               </div>
 
               {/* Social Links */}

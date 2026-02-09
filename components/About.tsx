@@ -1,69 +1,76 @@
 'use client'
 
-import { Code2, Brain, Database, Cpu } from 'lucide-react'
+// Custom SVG icons matching actual tool logos
+const PythonIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M11.914 0C5.82 0 6.2 2.656 6.2 2.656l.007 2.752h5.814v.826H3.9S0 5.789 0 11.969c0 6.18 3.403 5.96 3.403 5.96h2.03v-2.867s-.109-3.42 3.35-3.42h5.766s3.24.052 3.24-3.148V3.202S18.28 0 11.913 0zM8.708 1.85c.578 0 1.046.47 1.046 1.052 0 .581-.468 1.051-1.046 1.051-.578 0-1.046-.47-1.046-1.051 0-.582.468-1.052 1.046-1.052z"/>
+    <path d="M12.087 24c6.093 0 5.713-2.656 5.713-2.656l-.007-2.752h-5.814v-.826h8.121s3.9.445 3.9-5.735c0-6.18-3.403-5.96-3.403-5.96h-2.03v2.867s.109 3.42-3.35 3.42H9.45s-3.24-.052-3.24 3.148v5.292S5.72 24 12.087 24zm3.206-1.85c-.578 0-1.046-.47-1.046-1.052 0-.581.468-1.051 1.046-1.051.578 0 1.046.47 1.046 1.051 0 .582-.468 1.052-1.046 1.052z"/>
+  </svg>
+)
+
+const PyTorchIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12.005 0L4.952 7.053a9.865 9.865 0 000 13.94 9.866 9.866 0 0013.94 0 9.865 9.865 0 000-13.94l-3.13 3.13a5.252 5.252 0 01.001 7.43 5.252 5.252 0 01-7.432 0 5.252 5.252 0 010-7.431l5.79-5.79 1.879-1.88L12.005 0zm5.016 3.478a1.252 1.252 0 100 2.504 1.252 1.252 0 000-2.504z"/>
+  </svg>
+)
+
+const TensorFlowIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M1.292 5.856L11.54 0v24l-4.095-2.378V7.603l-6.168 3.564.015-5.31zm21.416 5.393l-6.168-3.564v15.927L12.46 24V0l10.248 5.856z"/>
+  </svg>
+)
+
+const OpenCVIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M11.8 0C9.59 0 7.41.63 5.52 1.88c-1.9 1.24-3.39 3.01-4.3 5.1A11.59 11.59 0 007.6 21.11a11.7 11.7 0 006.63 1.47c.06 0-1.22-2.1-1.54-2.66A8.68 8.68 0 013.17 8.15 8.68 8.68 0 0111.8 3.1c.52 0 1.03.05 1.53.14l1.56-2.7A11.44 11.44 0 0011.8 0zm6.63 2.89l-1.56 2.7a8.7 8.7 0 014.95 11.78 8.68 8.68 0 01-8.02 5.54h-.47l1.55 2.67c.33.02.66.03 1 .03a11.59 11.59 0 009.07-18.75 11.7 11.7 0 00-6.52-3.97zM12 7.29A4.72 4.72 0 007.29 12 4.72 4.72 0 0012 16.71 4.72 4.72 0 0016.71 12 4.72 4.72 0 0012 7.29z"/>
+  </svg>
+)
+
+const LangChainIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M6.0988 5.9175C2.7359 5.9175 0 8.6462 0 12s2.736 6.0825 6.0988 6.0825h11.8024C21.2641 18.0825 24 15.3538 24 12s-2.736-6.0825-6.0988-6.0825ZM5.9774 7.851c.493.0124 1.02.2496 1.273.6228.3673.4592.4778 1.0668.8944 1.4932.5604.6118 1.199 1.1505 1.7161 1.802.4892.5954.8386 1.2937 1.1436 1.9975.1244.2335.1257.5202.31.7197.0908.1204.5346.4483.4383.5645.0555.1204.4702.286.3263.4027-.1944.04-.4129.0476-.5616-.1074-.0549.126-.183.0596-.2819.0432a4 4 0 0 0-.025.0736c-.3288.0219-.5754-.3126-.732-.565-.3111-.168-.6642-.2702-.982-.446-.0182.2895.0452.6485-.231.8353-.014.5565.8436.0656.9222.4804-.061.0067-.1286-.0095-.1774.0373-.2239.2172-.4805-.1645-.7385-.007-.3464.174-.3808.3161-.8096.352-.0237-.0359-.0143-.0592.0059-.0811.1207-.1399.1295-.3046.3356-.3643-.2122-.0334-.3899.0833-.5686.1757-.2323.095-.2304-.2141-.5878.0164-.0396-.0322-.0208-.0615.0018-.0864.0908-.1107.2102-.127.345-.1208-.663-.3686-.9751.4507-1.2813.0432-.092.0243-.1265.1068-.1845.1652-.05-.0548-.0123-.1212-.0099-.1857-.0598-.028-.1356-.041-.1179-.1366-.1171-.0395-.1988.0295-.286.0952-.0787-.0608.0532-.1492.0776-.2125.0702-.1216.23-.025.3111-.1126.2306-.1308.552.0814.8155.0455.203.0255.4544-.1825.3526-.39-.2171-.2767-.179-.6386-.1839-.9695-.0268-.1929-.491-.4382-.6252-.6462-.1659-.1873-.295-.4047-.4243-.6182-.4666-.9008-.3198-2.0584-.9077-2.8947-.266.1466-.6125.0774-.8418-.119-.1238.1125-.1292.2598-.139.4161-.297-.2962-.2593-.8559-.022-1.1855.0969-.1302.2127-.2373.342-.3316.0292-.0213.0391-.0419.0385-.0747.1174-.5267.5764-.7391 1.0694-.7267m12.4071.46c.5575 0 1.0806.2159 1.474.6082s.61.9145.61 1.4704c0 .556-.2167 1.078-.61 1.4698v.0006l-.902.8995a2.08 2.08 0 0 1-.8597.5166l-.0164.0047-.0058.0164a2.05 2.05 0 0 1-.474.7308l-.9018.8995c-.3934.3924-.917.6083-1.4745.6083s-1.0806-.216-1.474-.6083c-.813-.8107-.813-2.1294 0-2.9402l.9019-.8995a2.056 2.056 0 0 1 .858-.5143l.017-.0053.0058-.0158a2.07 2.07 0 0 1 .4752-.7337l.9018-.8995c.3934-.3924.9171-.6083 1.4745-.6083zm0 .8965a1.18 1.18 0 0 0-.8388.3462l-.9018.8995a1.181 1.181 0 0 0-.3427.9252l.0053.0572c.0323.2652.149.5044.3374.6917.13.1296.2733.2114.4471.2686a.9.9 0 0 1 .014.1582.884.884 0 0 1-.2609.6304l-.0554.0554c-.3013-.1028-.5525-.253-.7794-.4792a2.06 2.06 0 0 1-.5761-1.0968l-.0099-.0578-.0461.0368a1.1 1.1 0 0 0-.0876.0794l-.9024.8995c-.4623.461-.4623 1.212 0 1.673.2311.2305.535.346.8394.3461.3043 0 .6077-.1156.8388-.3462l.9019-.8995c.4623-.461.4623-1.2113 0-1.673a1.17 1.17 0 0 0-.4367-.2749 1 1 0 0 1-.014-.1611c0-.2591.1023-.505.2901-.6923.3019.1028.57.2694.7962.495.3007.2999.4994.679.5756 1.0968l.0105.0578.0455-.0373a1.1 1.1 0 0 0 .0887-.0794l.902-.8996c.4622-.461.4628-1.2124 0-1.6735a1.18 1.18 0 0 0-.8395-.3462Z"/>
+  </svg>
+)
+
+const ScikitLearnIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    {/* Scikit-learn - two overlapping circles */}
+    <ellipse cx="14" cy="10" rx="8" ry="8" opacity="0.6"/>
+    <ellipse cx="8" cy="14" rx="5" ry="5"/>
+  </svg>
+)
+
+const NumPyIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M10.315 4.876L6.098 2.753l-4.2 2.088 4.212 2.136 4.205-2.1zM5.9 11.32L1.675 9.23v4.832L5.9 16.14v-4.82zm.405-3.438l4.207-2.096v8.452l-4.207 2.09V7.882zm6.207.288v8.472l4.193-2.716V5.392l-4.193 2.778zm4.6-3.122l-4.203-2.1-4.09 2.04 4.2 2.092 4.093-2.032zm.405 8.302v-4.553l-4.193 2.783v4.565l4.193-2.795zm5.583-6.212L18.9 9.23v6.938l4.2-2.795V7.138zm-4.605-4.385l4.195 2.088-4.09 2.04-4.2-2.088 4.095-2.04z"/>
+  </svg>
+)
+
+const FastAPIIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 0C5.375 0 0 5.375 0 12c0 6.627 5.375 12 12 12 6.626 0 12-5.373 12-12 0-6.625-5.373-12-12-12zm-.624 21.62v-7.528H7.19L13.203 2.38v7.528h4.029L11.376 21.62z"/>
+  </svg>
+)
 
 const toolkit = [
-  { name: 'Python', icon: Code2 },
-  { name: 'PyTorch', icon: Brain },
-  { name: 'TensorFlow', icon: Brain },
-  { name: 'OpenCV', icon: Cpu },
-  { name: 'LangGraph', icon: Database },
-  { name: 'Scikit-learn', icon: Brain },
-  { name: 'NumPy', icon: Code2 },
-  { name: 'FastAPI', icon: Database },
-]
-
-const interests = [
-  'Diffusion Models',
-  'Model Interpretability',
-  'Computer Vision',
-  'Optimization Theory',
-  'Neural Architecture',
-  'Bayesian Methods',
+  { name: 'Python', icon: PythonIcon },
+  { name: 'PyTorch', icon: PyTorchIcon },
+  { name: 'TensorFlow', icon: TensorFlowIcon },
+  { name: 'OpenCV', icon: OpenCVIcon },
+  { name: 'LangGraph', icon: LangChainIcon },
+  { name: 'Scikit-learn', icon: ScikitLearnIcon },
+  { name: 'NumPy', icon: NumPyIcon },
+  { name: 'FastAPI', icon: FastAPIIcon },
 ]
 
 export default function About() {
   return (
-    <section id="about" className="-mt-16 pb-2 px-6 lg:px-8 scroll-mt-28">
+    <section id="about" className="mt-4 pb-2 px-6 lg:px-8 scroll-mt-28">
       <div className="max-w-6xl mx-auto">
-        <h2 className="section-heading mb-4">About</h2>
+        <h2 className="section-heading mb-4">Toolkit</h2>
 
-        {/* Bento Grid - Compact */}
-        <div className="grid md:grid-cols-3 gap-3">
-          {/* Bio Card - Spans 2 cols */}
-          <div className="md:col-span-2 bento-card">
-            <div className="space-y-3 text-sm text-text-secondary leading-relaxed">
-              <p>
-                I'm deeply interested in understanding the fundamental principles behind modern AI
-                and machine learning systems. My focus lies in exploring the mathematical and
-                architectural foundations that drive contemporary ML and deep learning models.
-              </p>
-              <p>
-                From optimization dynamics to model interpretability, I enjoy diving into the
-                "why" behind algorithms. Currently working on projects at the intersection of
-                photonics and machine learning, investigating how physical systems can enhance computation.
-              </p>
-            </div>
-          </div>
-
-          {/* Research Interests */}
-          <div className="bento-card">
-            <h3 className="text-sm font-semibold text-text-primary mb-3">Research Interests</h3>
-            <div className="flex flex-wrap gap-1.5">
-              {interests.map((interest) => (
-                <span
-                  key={interest}
-                  className="px-2.5 py-1 bg-accent/5 text-accent text-xs rounded-lg"
-                >
-                  {interest}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Toolkit Card - Full width */}
-          <div className="md:col-span-3 bento-card">
-            <h3 className="text-sm font-semibold text-text-primary mb-3">Toolkit</h3>
+        {/* Toolkit Card */}
+        <div className="bento-card">
             <div className="grid grid-cols-4 md:grid-cols-8 gap-2">
               {toolkit.map((tool) => {
                 const Icon = tool.icon
@@ -73,7 +80,7 @@ export default function About() {
                     className="flex flex-col items-center gap-1.5 p-2.5 rounded-xl
                              bg-warm-white hover:bg-accent/5 transition-colors group"
                   >
-                    <Icon className="w-4 h-4 text-text-muted group-hover:text-accent transition-colors" />
+                    <Icon className="w-5 h-5 text-text-muted group-hover:text-accent transition-colors" />
                     <span className="text-[10px] text-text-secondary group-hover:text-accent transition-colors">
                       {tool.name}
                     </span>
@@ -81,7 +88,6 @@ export default function About() {
                 )
               })}
             </div>
-          </div>
         </div>
       </div>
     </section>

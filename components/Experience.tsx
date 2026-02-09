@@ -27,12 +27,15 @@ const education = {
 }
 
 const coursework = [
-  'Machine Learning (Grad)',
-  'Computer Vision',
-  'Data Structures',
+  'Algorithms',
   'Linear Algebra',
-  'OOP',
-  'DFQs',
+  'Discrete Math',
+  'Learning Theory & ML (Grad)',
+  'Deep Learning Theory (Grad)',
+  'High Dimensional Learning (Grad)',
+  'Computer Vision',
+  'Honors Probability',
+  'Theory of Computation',
 ]
 
 export default function Experience() {
@@ -41,7 +44,7 @@ export default function Experience() {
       <div className="max-w-6xl mx-auto">
         <h2 className="section-heading mb-4">Experience</h2>
 
-        <div className="grid md:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {/* Experience Cards - 2 columns */}
           <div className="md:col-span-2 grid gap-3">
             {experiences.map((exp, index) => (
