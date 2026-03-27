@@ -21,9 +21,8 @@ export default function BlogIndexPage() {
         <div className="max-w-4xl mx-auto pb-16">
           <section className="pb-6">
             <div className="bento-card space-y-4">
-              <div className="status-badge">Blog</div>
               <div className="space-y-2">
-                <h1 className="section-heading">Notes, essays, and build logs</h1>
+                <h1 className="section-heading">Welcome to my blog!</h1>
                 <p className="body-text max-w-3xl">
                   I started my ML journey less than a year ago, and it&apos;s been quite the ride.
                   This blog is where I put down things I&apos;ve been reading, concepts I find
