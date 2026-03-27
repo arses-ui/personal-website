@@ -45,3 +45,23 @@ This project is ready to be deployed on Vercel, Netlify, or any modern hosting p
 - Single-page application
 - Optimized for performance (targeting 95+ Lighthouse scores)
 
+## Blog
+
+The blog now uses markdown files stored in `content/blog`.
+
+Each post needs a small frontmatter block at the top:
+
+```md
+---
+title: My Post Title
+date: 2026-03-27
+excerpt: One or two sentences that appear on the blog index page.
+tags: notes, engineering
+---
+```
+
+The filename becomes the URL slug:
+
+- `content/blog/my-post-title.md` -> `/blog/my-post-title`
+
+The blog index page lives at `/blog`, and every post is listed there automatically.

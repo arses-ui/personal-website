@@ -1,13 +1,15 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 
 const navItems = [
-  { name: 'About', href: '#about' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'About', href: '/#about' },
+  { name: 'Projects', href: '/#projects' },
+  { name: 'Experience', href: '/#experience' },
+  { name: 'Blog', href: '/blog' },
+  { name: 'Contact', href: '/#contact' },
 ]
 
 export default function Navigation() {
@@ -23,14 +25,6 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
-    setMobileMenuOpen(false)
-  }
-
   return (
     <>
       <nav
@@ -41,18 +35,25 @@ export default function Navigation() {
         }`}
       >
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-end h-20 md:h-24">
+          <div className="flex items-center justify-between h-20 md:h-24">
+            <Link
+              href="/"
+              className="text-sm md:text-base font-semibold tracking-[0.16em] uppercase text-text-primary"
+            >
+              Arses Prasai
+            </Link>
+
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-10">
               {navItems.map((item) => (
-                <button
+                <Link
                   key={item.name}
-                  onClick={() => scrollToSection(item.href)}
+                  href={item.href}
                   className="text-text-secondary hover:text-text-primary transition-colors
                            duration-200 text-lg font-medium"
                 >
                   {item.name}
-                </button>
+                </Link>
               ))}
             </div>
 
@@ -75,14 +76,15 @@ export default function Navigation() {
         >
           <div className="max-w-6xl mx-auto px-6 py-4 space-y-2">
             {navItems.map((item) => (
-              <button
+              <Link
                 key={item.name}
-                onClick={() => scrollToSection(item.href)}
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
                 className="block w-full text-left py-3 text-text-secondary hover:text-accent
                          transition-colors text-lg font-medium"
               >
                 {item.name}
-              </button>
+              </Link>
             ))}
           </div>
         </div>

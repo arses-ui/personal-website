@@ -1,1 +1,5 @@
 CLAUDE.md
+node_modules
+.next
+.DS_Store
+public/.DS_Store
