@@ -105,7 +105,7 @@ export default function Hero() {
                 <div className="space-y-3 text-base text-text-secondary leading-relaxed">
                   <p>CS & Math at Dartmouth College, originally from Kathmandu, Nepal.</p>
                   <p>Research interest in ML Interpretability & Model Efficiency.</p>
-                  <p>Currently working on Diffusion Models & Photonics design.</p>
+                  <p>Currently working on some cool e2e projects.</p>
                   <p>Soccer (Bayern Munich supporter), Snowboard, Hiking, etc.</p>
                 </div>
               </div>

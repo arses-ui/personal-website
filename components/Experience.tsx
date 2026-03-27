@@ -35,7 +35,7 @@ const coursework = [
   'High Dimensional Learning (Grad)',
   'Computer Vision',
   'Honors Probability',
-  'Theory of Computation',
+  'Permutations, Probability, and Sorting(Grad)',
 ]
 
 export default function Experience() {
