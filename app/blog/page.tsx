@@ -24,24 +24,22 @@ export default function BlogIndexPage() {
               <div className="status-badge">Blog</div>
               <div className="space-y-2">
                 <h1 className="section-heading">Notes, essays, and build logs</h1>
-                <p className="body-text max-w-2xl">
-                  This page lists every post. Each title opens its own page, so the blog can grow
-                  separately from the homepage.
+                <p className="body-text max-w-3xl">
+                  I started my ML journey less than a year ago, and it&apos;s been quite the ride.
+                  This blog is where I put down things I&apos;ve been reading, concepts I find
+                  interesting, and ideas that helped sharpen my intuition on certain topics. What I
+                  write is partly for anyone who stumbles across it, but more so for myself: to
+                  make sense of, and put down in words, what I think I understand. As a result,
+                  everything here is written in my own words; any AI involvement stays strictly at
+                  the level of grammar and clarity, nothing more.
                 </p>
               </div>
             </div>
           </section>
 
-          <section className="space-y-4">
-            {posts.length === 0 ? (
-              <div className="bento-card">
-                <h2 className="text-xl font-serif font-semibold text-text-primary">No posts yet</h2>
-                <p className="mt-2 body-text">
-                  Add a markdown file to <code className="rounded bg-neutral-100 px-1.5 py-1 text-sm text-text-primary">content/blog</code> and it will show up here.
-                </p>
-              </div>
-            ) : (
-              posts.map((post) => (
+          {posts.length > 0 && (
+            <section className="space-y-4">
+              {posts.map((post) => (
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
@@ -72,9 +70,9 @@ export default function BlogIndexPage() {
                     <ArrowUpRight className="mt-1 h-5 w-5 flex-shrink-0 text-text-muted transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
                   </div>
                 </Link>
-              ))
-            )}
-          </section>
+              ))}
+            </section>
+          )}
         </div>
       </main>
       <Footer />
